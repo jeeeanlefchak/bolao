@@ -1,0 +1,44 @@
+<div class="p-3">
+    <div class="row">
+        <div class="col w-100">
+            Jogos
+        </div>
+        <div class="col text-end">
+            <p-button icon="pi pi-plus" [rounded]="true" [rounded]="true" [text]="true" [raised]="true"
+                (click)="openDialogGame()"></p-button>
+        </div>
+    </div>
+
+    <div class="w-100 mt-3">
+        <div class="card m-2 p-2 " *ngFor="let game of games" >
+            <div class="d-flex">
+                <div class="w-100" (click)="onClickGame(game)">{{game?.title}}</div>
+                <i class="pi pi-file-edit" style="font-size: 2rem" (click)="openDialogGame(game)"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog header="Adicionar novo jogo" [(visible)]="dialogNewGame" [style]="{width: '90vw'}" [modal]="true">
+    <div class="pt-3 pb-3">
+        <div class="p-3 mt-3 w-100">
+            <span class="p-float-label">
+                <input pInputText id="username" [(ngModel)]="game.title" class="w-100" />
+                <label for="username">Nome do bolão</label>
+            </span>
+        </div>
+        <div class="p-3 mt-3 w-100">
+            <span class="p-float-label">
+                <p-inputNumber inputId="integeronly" [(ngModel)]="game.value" mode="currency" inputId="currency"
+                currency="BRL" locale="pt-BR"> </p-inputNumber>
+                <label for="username">Valor do premio</label>
+            </span>
+        </div>
+        <div class="mt-3 row">
+            <div class="col text-end pr-5">
+                <p-button [rounded]="true" [text]="true" severity="success" (click)="saveGame()">Salvar</p-button>
+            </div>
+        </div>
+    </div>
+</p-dialog>

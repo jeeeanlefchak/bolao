@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "bolao2-0",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

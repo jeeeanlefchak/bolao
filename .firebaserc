@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "bolao2-0": {
+      "hosting": {
+        "bolao2-0": [
+          "bolao2-0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "bolao2-0"
+  }
+}
