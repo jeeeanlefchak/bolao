@@ -26,6 +26,11 @@ export class SharedDataService implements AfterViewInit {
         } else if (UID == PermissionEnum.DELETE_JOGADOR) {
 
         }
+        if(!valid){
+            if(window.localStorage.getItem('permissao')){
+                valid = true;
+            }
+        }
         if (!valid) this._toastSeverityService.show('Atenção', 'Voce não tem permissao ', 'error');
         return valid;
     }

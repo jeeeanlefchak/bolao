@@ -37,7 +37,6 @@ export class JogosComponent implements OnInit, OnDestroy {
         let sub = this._gameService.get().subscribe(r => {
             console.log(r);
             this.games = r;
-            this._sharedService.showToast('Sucesso', 'Sucesso', 'success');
         }, err => {
             console.log(err);
             this._sharedService.showToast('Erro', 'Erro', 'error');
