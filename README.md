@@ -1,28 +1,15 @@
-# Bolao20
+O Mega Sena Bolão é um projeto web desenvolvido em Angular e conectado ao Firebase Firestore para proporcionar uma experiência interativa e social em torno do jogo da Mega Sena.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+Funcionalidades Principais
+Criação de Bolões: Os usuários podem criar bolões personalizados para a Mega Sena e convidar amigos para participar.
 
-## Development server
+Gerenciamento de Jogadores: Dentro de cada bolão, os criadores podem adicionar jogadores que desejam participar do jogo.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Apostas Personalizadas: Cada jogador tem a liberdade de adicionar um valor em dinheiro ao bolão, contribuindo para o prêmio total.
 
-## Code scaffolding
+Distribuição de Porcentagens: O sistema calcula automaticamente a porcentagem de cada jogador com base no valor que contribuiu, proporcionando uma experiência equitativa e transparente.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Tecnologias Utilizadas
+Angular: O frontend do projeto é desenvolvido utilizando o framework Angular, oferecendo uma interface de usuário moderna e responsiva.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# bolao
+Firebase Firestore: A integração com o Firestore permite o armazenamento eficiente de dados relacionados aos bolões, jogadores e suas apostas.
