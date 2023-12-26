@@ -15,6 +15,9 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { SharedDataService } from './services/shared.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -28,13 +31,14 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    provideFirebaseApp(() => initializeApp({"projectId":"bolao2-0","appId":"1:779221449561:web:0fba27be200d271cb72a48","databaseURL":"https://bolao2-0-default-rtdb.firebaseio.com","storageBucket":"bolao2-0.appspot.com","apiKey":"AIzaSyAizcz9IV8QQqKKMmV8V36SEXkRz3FhjWw","authDomain":"bolao2-0.firebaseapp.com","messagingSenderId":"779221449561","measurementId":"G-0H8M3QTHV3"})),
+    provideFirebaseApp(() => initializeApp({ "projectId": "bolao2-0", "appId": "1:779221449561:web:0fba27be200d271cb72a48", "databaseURL": "https://bolao2-0-default-rtdb.firebaseio.com", "storageBucket": "bolao2-0.appspot.com", "apiKey": "AIzaSyAizcz9IV8QQqKKMmV8V36SEXkRz3FhjWw", "authDomain": "bolao2-0.firebaseapp.com", "messagingSenderId": "779221449561", "measurementId": "G-0H8M3QTHV3" })),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
     provideStorage(() => getStorage()),
+    ToastModule,
   ],
-  providers: [],
+  providers: [SharedDataService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

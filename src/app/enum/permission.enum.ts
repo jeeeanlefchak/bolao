@@ -1,0 +1,6 @@
+export enum PermissionEnum{
+    CREATE_JOGADOR = 'CREATE_JOGADOR',
+    CREATE_GAME = 'CREATE_GAME',
+    DELETE_JOGADOR = 'DELETE_JOGADOR',
+
+}

@@ -64,7 +64,7 @@
             </span>
         </div>
         <div class="mt-3 row">
-            <div class="col text-end pr-5">
+            <div class="col text-end pr-5" *ngIf="jogador.id">
                 <p-button severity="danger" (click)="delteJogador()">Excluir</p-button>
             </div>
             <div class="col text-end pr-5">

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Jogador } from '../../../models/jogador.model';
 import { JogadorService } from '../../../services/jogador.service';
 import { Subscription } from 'rxjs';
+import { SharedDataService } from '../../../services/shared.service';
 
 @Component({
     selector: 'app-jogo-detail',
@@ -25,6 +26,7 @@ export class JogoDetailComponent implements OnInit, OnDestroy {
         private readonly _activatedRoute: ActivatedRoute,
         private readonly _gameService: GameService,
         private readonly _jogadorService: JogadorService,
+        private readonly _sharedService: SharedDataService,
 
     ) {
     }
@@ -44,6 +46,8 @@ export class JogoDetailComponent implements OnInit, OnDestroy {
         let sub = this._gameService.getById(this.id).subscribe(r => {
             this.game = r as Game;
             this.buscarJogadores();
+        }, err => {
+            this._sharedService.showToast('Erro', 'Erro', 'error');
         })
         this._unsubscribe.push(sub);
     }
@@ -60,6 +64,7 @@ export class JogoDetailComponent implements OnInit, OnDestroy {
     }
 
     openDialogNewJogador(jogador?: Jogador) {
+        if (!this._sharedService.permission('CREATE_JOGADOR')) return;
         this.jogador = new Jogador();
         if (jogador) this.jogador = jogador;
         this.dialogJogador = true;
@@ -67,7 +72,8 @@ export class JogoDetailComponent implements OnInit, OnDestroy {
 
     saveJogador() {
         if (!this.jogador.name || !this.jogador.value) {
-            return
+            this._sharedService.showToast('Atenção', 'Form invalido', 'warn');
+            return;
         }
         this.jogador.gameId = this.id;
         this.jogador.modifiedOn = new Date();
@@ -75,28 +81,32 @@ export class JogoDetailComponent implements OnInit, OnDestroy {
             this._jogadorService.update(this.jogador).then(r => {
                 this.dialogJogador = false;
                 this.buscarJogadores();
+                this._sharedService.showToast('Sucesso', 'Sucesso', 'success');
             }, err => {
-
+                this._sharedService.showToast('Erro', 'Erro', 'error');
             })
         } else {
             this.jogador.createdOn = new Date();
             this._jogadorService.add(this.jogador).then(r => {
                 this.dialogJogador = false;
                 this.buscarJogadores();
+                this._sharedService.showToast('Sucesso', 'Sucesso', 'success');
             }, err => {
-
+                this._sharedService.showToast('Erro', 'Erro', 'error');
             })
         }
 
     }
 
     delteJogador() {
+        if (!this._sharedService.permission('DELETE_JOGADOR')) return;
         let id = this.jogador.id as string;
         this._jogadorService.delete(id).then(r => {
             this.dialogJogador = false;
             this.buscarJogadores();
+            this._sharedService.showToast('Sucesso', 'Sucesso', 'success');
         }, err => {
-
+            this._sharedService.showToast('Erro', 'Erro', 'error');
         })
     }
 
@@ -104,6 +114,8 @@ export class JogoDetailComponent implements OnInit, OnDestroy {
         let sub = this._jogadorService.getByGameId(this.id).subscribe(rr => {
             this.jogadores = rr;
             this.calculatePercentage();
+        }, err => {
+            this._sharedService.showToast('Erro', 'Erro', 'error');
         })
         this._unsubscribe.push(sub);
     }
